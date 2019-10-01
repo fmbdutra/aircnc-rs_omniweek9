@@ -1,3 +1,4 @@
+// Schema de cadastros de empresas
 const mongoose = require('mongoose');
 
 const SpotSchema = new mongoose.Schema({
