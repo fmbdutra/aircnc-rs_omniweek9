@@ -13,7 +13,12 @@ module.exports = {
         const { email } = req.body;
         //Com chaves, quer dizer que ele está buscando a chave EMAIL no req.body
 
-        const user = await User.create({ email });
+        //Verificação
+        let user = await User.findOne({ email }); //"User.findOne({ email : email})" mas como é igual pode ser omitido
+
+        if (!user){
+            user = await User.create({ email });
+        }
 
         return res.json(user);
     }
