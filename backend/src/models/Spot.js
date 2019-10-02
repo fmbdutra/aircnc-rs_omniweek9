@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const SpotSchema = new mongoose.Schema({
     thumbnail: String,
     company: String,
-    prince: Number,
+    price: Number,
     techs: [String],
     user: {
         type: mongoose.Schema.Types.ObjectId,
