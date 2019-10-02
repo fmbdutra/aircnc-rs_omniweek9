@@ -1,3 +1,6 @@
+#ignorar pasta de upload de imagens
+/backend/uploads
+
 # Logs
 logs
 *.log
