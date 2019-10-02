@@ -7,6 +7,10 @@ import logo from './assets/logo.svg';
 function App() {
   function handleSubmit(event) {
     event.preventDefault();
+
+    // document.querySelector('input#email'); assim no JS, mas nao no React
+    
+
     console.log('Hello World');
   }
 
