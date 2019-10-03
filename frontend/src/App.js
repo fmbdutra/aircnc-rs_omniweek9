@@ -1,18 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import api from './services/api';
 
 import logo from './assets/logo.svg';
 
 function App() {
+  const [email, setEmail] = useState('');
+    
   function handleSubmit(event) {
     event.preventDefault();
-
     // document.querySelector('input#email'); assim no JS, mas nao no React
-    
+    // console.log(email);
 
-    console.log('Hello World');
+
   }
+
+  // function handleEmailChange(event){
+  //   event => setEmail(event.target.value);
+  // }
+  // Esta dentro do form, dentro do onChange
 
   return (
     <div className="container">
@@ -28,6 +34,8 @@ function App() {
             id="email" 
             type="email" 
             placeholder="Seu melhor email"
+            value ={email}
+            onChange={event => setEmail(event.target.value)}
          /> 
 
          <button type="submit" className="btn">Entrar</button>
