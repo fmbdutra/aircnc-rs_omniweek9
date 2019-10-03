@@ -1,53 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import api from './services/api';
 
 import logo from './assets/logo.svg';
+import Routes from './routes';
 
 function App() {
-  const [email, setEmail] = useState('');
-    
-  async function handleSubmit(event) {
-    event.preventDefault();
-    // document.querySelector('input#email'); assim no JS, mas nao no React
-    // console.log(email); // Teste
-    const response = await api.post('/sessions', { email });
-    const { _id } = response.data;
-        
-    localStorage.setItem('user', _id);    
-  }
-
-  // function handleEmailChange(event){
-  //   event => setEmail(event.target.value);
-  // }
-  // Esta dentro do form, dentro do onChange
-
   return (
     <div className="container">
-      <img src={logo} alt="aircnc"/>
-      <div className="content">
-        <p>
-          Ofereça <strong>spots</strong> para programadores e encontre <strong>talentos</strong> para sua empresa
-        </p>
+      <img src={logo} alt="AirCnC"/>
 
-        <form onSubmit={handleSubmit}>
-         <label htmlFor="email">Email * </label>
-         <input 
-            id="email" 
-            type="email" 
-            placeholder="Seu melhor email"
-            value ={email}
-            onChange={event => setEmail(event.target.value)}
-         /> 
-
-         <button type="submit" className="btn">Entrar</button>
-        </form>
-      </div>
-    
-    
+      <div className="content">  
+        <Routes />
+      </div>    
     </div>
-
-
   );
 }
 
