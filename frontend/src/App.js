@@ -12,11 +12,9 @@ function App() {
     // document.querySelector('input#email'); assim no JS, mas nao no React
     // console.log(email); // Teste
     const response = await api.post('/sessions', { email });
-
     const { _id } = response.data;
-    console.log(_id);
-
-    
+        
+    localStorage.setItem('user', _id);    
   }
 
   // function handleEmailChange(event){
