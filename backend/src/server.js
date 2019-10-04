@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const routes = require('./routes');
 // Banco feito em Mongo Atlas. Base de teste.
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://fabiano:qwe123@omniweek9-shard-00-00-y3gvn.mongodb.n
 
 app.use(cors()); //app.use(cors(http:localhost:3333/)) seria apenas a nosso front para acessar essa apis 
 app.use(express.json());
+app.use('/files', express.static(path.resolve(__dirname, '..','uploads'))); //rota virtual
 app.use(routes);
 
 
