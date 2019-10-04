@@ -1,19 +1,36 @@
 import React, { useState, useMemo } from 'react';
+
+import api from '../../services/api';
+
 import camera from '../../assets/camera.svg';
 import './styles.css';
 
-export default function New(){
+export default function New( { history }){
     const [thumbnail, setThumbnail] = useState('');
     const [company, setCompany] = useState('');
     const [techs, setTechs] = useState('');
-    const [prince, setPrice] = useState('');
+    const [price, setPrice] = useState('');
     
     const preview = useMemo(() => {
         return thumbnail ? URL.createObjectURL(thumbnail) : null;
     },[thumbnail])
     
-    function handleSubmit(){
+    async function handleSubmit(event){
+        event.preventDefault();
 
+        const data = new FormData(); //Quando enviar por multipart form, diferente de JSON
+        const user_id = localStorage.getItem('user');
+
+        data.append('thumbnail', thumbnail);
+        data.append('company', company);
+        data.append('techs', techs);
+        data.append('price', price);
+
+        await api.post('/spots', data, {
+            headers: {user_id}
+        });
+
+        history.push('/dashboard');
     }
 
     return (
@@ -42,11 +59,11 @@ export default function New(){
                 value = { techs }
                 onChange={event => setTechs(event.target.value)}
             />
-            <label htmlFor="prince">VALOR DA DIÁRIA * <span>(caso gratuíto, deixe em branco)</span> </label>
+            <label htmlFor="price">VALOR DA DIÁRIA * <span>(caso gratuíto, deixe em branco)</span> </label>
             <input
-                id="prince"
+                id="price"
                 placeholder="Valor cobrado por dia"
-                value = { prince }
+                value = { price }
                 onChange={event => setPrice(event.target.value)}
             />
 
